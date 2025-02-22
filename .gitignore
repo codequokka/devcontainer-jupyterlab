@@ -1,2 +1,5 @@
 # Docker
 .env
+
+# Jupyter
+.ipynb_checkpoints/
