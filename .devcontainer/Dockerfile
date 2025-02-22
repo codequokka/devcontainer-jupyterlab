@@ -7,7 +7,7 @@ ARG GID
 ARG WORKDIR=/app
 
 RUN apt-get update && \
-    apt-get install -y sudo bash-completion
+    apt-get install -y bash-completion nodejs sudo
 
 RUN groupadd -g ${GID} ${GROUPNAME} && \
     useradd -m -s /bin/bash -u ${UID} -g ${GID} -G sudo ${USERNAME} && \
