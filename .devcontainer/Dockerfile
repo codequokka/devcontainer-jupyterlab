@@ -18,6 +18,7 @@ RUN mkdir ${WORKDIR} && chown ${USERNAME}:${GROUPNAME} ${WORKDIR}
 USER ${USERNAME}
 WORKDIR ${WORKDIR}
 COPY requirements.txt requirements-dev.txt ./
+COPY jupyter_lab_config.py ./
 RUN python3 -m venv .venv && \
     . .venv/bin/activate && \
     pip install --upgrade pip && \
