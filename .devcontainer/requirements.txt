@@ -1,1 +1,2 @@
 jupyterlab==4.3.5
+lckr_jupyterlab_variableinspector==3.2.4
