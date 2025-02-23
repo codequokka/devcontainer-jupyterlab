@@ -6,17 +6,19 @@ ARG UID
 ARG GID
 ARG WORKDIR=/app
 
-RUN groupadd -g ${GID} ${GROUPNAME} && \
-    useradd -m -s /bin/bash -u ${UID} -g ${GID} ${USERNAME}
-
 RUN apt-get update && \
-    apt-get install -y bash-completion
+    apt-get install -y bash-completion nodejs sudo
+
+RUN groupadd -g ${GID} ${GROUPNAME} && \
+    useradd -m -s /bin/bash -u ${UID} -g ${GID} -G sudo ${USERNAME} && \
+    echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN mkdir ${WORKDIR} && chown ${USERNAME}:${GROUPNAME} ${WORKDIR}
 
 USER ${USERNAME}
 WORKDIR ${WORKDIR}
 COPY requirements.txt requirements-dev.txt ./
+COPY jupyter_lab_config.py ./
 RUN python3 -m venv .venv && \
     . .venv/bin/activate && \
     pip install --upgrade pip && \

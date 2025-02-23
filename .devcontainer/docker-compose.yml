@@ -9,12 +9,7 @@ services:
         - GID
     entrypoint: >
       /app/.venv/bin/jupyter lab
-        --allow-root
-        --ip=0.0.0.0
-        --port=8888
-        --no-browser
-        --NotebookApp.token=''
-        --notebook-dir=/workspace/notebooks
+        --config=/app/jupyter_lab_config.py
     expose:
       - 8888
     ports:
